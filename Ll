@@ -1,0 +1,141 @@
+(prefix)çekiliş
+
+```
+
+$nomention
+
+$argsCheck[>3;Yanlış biçimli kullanım: `(prefix)çekiliş 10 dakika hediye`]
+
+$if[$message[1]==]
+
+$color[FF0000]
+
+$description[Süre yazmayı unuttun.]
+
+$else
+
+$if[$isNumber[$message[1]]==false]
+
+$color[FF0000]
+
+$description[Yanlış biçimli kullanım: 
+
+`(prefix)çekiliş 10 dakika hediye`]
+
+$else
+
+$if[$message[2]==]
+
+$color[FF0000]
+
+$description[Zaman yazmayı unuttun.]
+
+$else
+
+$if[$checkContains[$message[2];saniye;dakika]==false]
+
+$color[FF0000]
+
+$description[Yanlış biçimli kullanım: 
+
+`(prefix)çekiliş 10 dakika hediye`
+
+• En fazla 40 dakika olur.
+
+• ilk önce süre sonra zaman sonra hediye yazılır.
+
+• `Saniye` veya `dakika` komutları ile desteklidir.]
+
+$else
+
+$if[$message[3]==]
+
+$color[FF0000]
+
+$description[Hediye yazmayı unuttun.]
+
+$else
+
+$title[Çekiliş Başlatıldı]
+
+$description[
+
+$addField[Çekilişi Başlatan;$username#$discriminator[$authorID]]
+
+$addField[Çekiliş Süresi;$message[1] $message[2]]
+
+$addField[Hediye;$message[3] $message[4] $message[5] $message[6]]
+
+]
+
+$thumbnail[$serverIcon]
+
+$color[1]
+
+$endif
+
+$endif
+
+$endif
+
+$endif
+
+$endif```
+
+(prefix)çekiliş
+
+```
+
+$nomention
+
+$argsCheck[>3;]
+
+$if[$message[1]==]
+
+$else
+
+$if[$isNumber[$message[1]]==false]
+
+$else
+
+$if[$message[2]==]
+
+$else
+
+$if[$checkContains[$message[2];saniye;dakika]==false]
+
+$else
+
+$if[$message[3]==]
+
+$else
+
+<@$randomUserID>
+
+$replyIn[$message[1]$replaceText[$replaceText[$message[2];dakika;m;1];saniye;s;1]]
+
+$title[Çekiliş Bitti]
+
+$description[
+
+$addField[Çekilişi Kazanan;$username[$randomUserID]#$discriminator[$randomUserID]]
+
+$addField[Hediye;$message[3] $message[4] $message[5] $message[6]]
+
+]
+
+$thumbnail[$serverIcon]
+
+$color[1]
+
+$suppressErrors[En fazla 2400 saniye veya 40 dakika yazabilirsin.]
+
+$endif
+
+$endif
+
+$endif
+
+$endif
+
+$endif```
